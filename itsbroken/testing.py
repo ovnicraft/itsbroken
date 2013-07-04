@@ -17,10 +17,21 @@ DB_NAME = 'test_' + str(int(time.time()))
 USER = 1
 USER_PASSWORD = 'admin'
 CONTEXT = {}
+DEMO = False
 
+def change_addons_path(new_path):
+    """
+    Change the default addons-path
+    """
+    from openerp.tools import config
+    config['addons_path'] = new_path
+
+def set_demo(demo=False):
+    DEMO = demo
+    
 # Create a database with the name
 DB = db().exp_create_database(
-    DB_NAME, demo=False, lang=None, user_password=USER_PASSWORD
+    DB_NAME, demo=DEMO, lang=None, user_password=USER_PASSWORD
 )
 
 
